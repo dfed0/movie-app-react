@@ -2,6 +2,7 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
 import MoviesResults from './movies/MoviesResults'
+import Language from './language/Language'
 
 // const API_MOVIES: any = []
 
@@ -17,7 +18,7 @@ const options = {
 
 export default function Home() {
   const [movies, setMovies] = useState<any[]>([])
-
+  const [language, setLanguage] = useState('en-US')
   const inputRef = useRef<HTMLInputElement>(null)
   const mainRef = useRef<HTMLInputElement>(null)
 
@@ -39,7 +40,7 @@ export default function Home() {
   }
   function getMovies(url: any) {
     fetch(
-      `https://api.themoviedb.org/3/search/movie?language=en-US&query="${url}"`,
+      `https://api.themoviedb.org/3/search/movie?language=${language}&query="${url}"`,
       options
     )
       .then((res) => res.json())
@@ -49,7 +50,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      'https://api.themoviedb.org/3/movie/popular?language=en-US&page=1',
+      `https://api.themoviedb.org/3/movie/popular?language=${language}&page=1`,
       options
     )
       .then((res) => res.json())
@@ -60,7 +61,7 @@ export default function Home() {
         setMovies(sorted)
       })
       .catch((err) => console.error(err))
-  }, [])
+  }, [language])
   useEffect(() => {
     console.log('OK', movies)
   }, [movies])
@@ -76,6 +77,7 @@ export default function Home() {
             placeholder="Search"
             ref={inputRef}
           />
+          <Language language={language} setLanguage={setLanguage} />
         </form>
       </header>
       <main id="main" ref={mainRef}>

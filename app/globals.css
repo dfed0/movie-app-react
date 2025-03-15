@@ -18,6 +18,11 @@ header {
   justify-content: center;
   background-color: var(--secondary-color);
 }
+#form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
 .search {
   background-color: transparent;
   border: 2px solid var(--primary-color);
@@ -103,4 +108,15 @@ main {
   display: flex;
   justify-content: center;
   color: #aeaeae;
+}
+#language-div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  /* border: solid #fff; */
+  /* border-radius: 1rem; */
+}
+#language-select {
+  background-color: #9a8a89;
 }

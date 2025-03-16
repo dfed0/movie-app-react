@@ -39,10 +39,16 @@ header {
   outline: none;
   background-color: #453534;
 }
-
+.main-page {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+}
 main {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .movie {
@@ -98,6 +104,7 @@ main {
   max-height: 100%;
   transform: translateY(101%);
   transition: transform 0.3s ease-in;
+  overflow-y: scroll;
 }
 
 .movie:hover .overview {
@@ -120,3 +127,40 @@ main {
 #language-select {
   background-color: #9a8a89;
 }
+
+.page-div {
+  width: 1rem;
+  height: 1rem;
+}
+#pagination {
+  display: flex;
+  gap: 2rem;
+  margin: 2rem;
+}
+.page-div {
+  width: 5rem;
+  height: 5rem;
+  border-radius: 2.5rem;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.page-div:hover {
+  background-color: #ccc;
+}
+.button-div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+}
+
+.highlighted-page {
+  background-color: #453534;
+}
+/* #next-pages {
+  background-color: #fff;
+} */

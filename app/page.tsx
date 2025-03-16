@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import MoviesResults from './movies/MoviesResults'
 import Language from './language/Language'
+import Pagination from './pagination/Pagination'
 
 // const API_MOVIES: any = []
 
@@ -19,6 +20,7 @@ const options = {
 export default function Home() {
   const [movies, setMovies] = useState<any[]>([])
   const [language, setLanguage] = useState('en-US')
+  const [page, setPage] = useState(1)
   const inputRef = useRef<HTMLInputElement>(null)
   const mainRef = useRef<HTMLInputElement>(null)
 
@@ -50,7 +52,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      `https://api.themoviedb.org/3/movie/popular?language=${language}&page=1`,
+      `https://api.themoviedb.org/3/movie/popular?language=${language}&page=${page.toString()}`,
       options
     )
       .then((res) => res.json())
@@ -58,10 +60,11 @@ export default function Home() {
         const sorted = data.results.sort(
           (a: any, b: any) => b.popularity - a.popularity
         )
+        console.log(sorted)
         setMovies(sorted)
       })
       .catch((err) => console.error(err))
-  }, [language])
+  }, [language, page])
   useEffect(() => {
     console.log('OK', movies)
   }, [movies])
@@ -80,13 +83,14 @@ export default function Home() {
           <Language language={language} setLanguage={setLanguage} />
         </form>
       </header>
-      <main id="main" ref={mainRef}>
-        {movies.length > 0 ? (
-          <MoviesResults movies={movies} options={options} />
-        ) : (
-          ''
-        )}
-      </main>
+      <div className="main-page">
+        <main id="main" ref={mainRef}>
+          {movies.length > 0 && (
+            <MoviesResults movies={movies} options={options} />
+          )}
+        </main>
+        <Pagination page={page} setPage={setPage} />
+      </div>
     </>
   )
 }

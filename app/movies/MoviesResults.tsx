@@ -2,7 +2,7 @@
 
 const IMG_PATH = 'https://image.tmdb.org/t/p/w1280'
 
-export default function MoviesResults({ movies, options }: any) {
+export default function MoviesResults({ movies }: any) {
   function getClassByRating(vote: any) {
     if (vote >= 7) {
       return 'green'

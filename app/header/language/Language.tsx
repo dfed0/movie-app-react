@@ -1,10 +1,18 @@
-import { useRef, useState } from 'react'
+'use client'
+import { useSearchParams } from 'next/navigation'
+import { useRouter } from 'next/navigation'
+import { useRef } from 'react'
 
-export default function Language({ language, setLanguage }: any) {
+export default function Language({ language }: any) {
   const selectRef = useRef<HTMLSelectElement>(null)
+  const searchParams = useSearchParams()
+  const router = useRouter()
   function handleSelectChange(event: any) {
     console.log(event.target.value)
-    setLanguage(event.target.value)
+    // setLanguage(event.target.value)
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('language', event.target.value)
+    router.push(`?${params.toString()}`)
   }
   function chooseLanguage() {
     if (language === 'en-US') {
@@ -44,7 +52,7 @@ export default function Language({ language, setLanguage }: any) {
   return (
     <>
       {/* <select ref={selectRef}> */}
-      <div id="language-div">
+      <div id="params-div">
         <strong>{chooseLanguage()}</strong>
         <select onChange={handleSelectChange} id="language-select">
           <option value="en-US">English</option>

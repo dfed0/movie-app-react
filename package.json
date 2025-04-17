@@ -2,6 +2,8 @@
   "name": "movie-explorer",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "license_details": "This project is for educational purposes only and is not intended for commercial use.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -11,8 +13,7 @@
   "dependencies": {
     "next": "^15.3.0",
     "react": "^19.1.0",
-    "react-dom": "^19.1.0",
-    "react-router-dom": "^7.5.0"
+    "react-dom": "^19.1.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
